@@ -1,5 +1,0 @@
-bien:
-    resource: "@BienBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
