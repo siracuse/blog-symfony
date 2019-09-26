@@ -12,11 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
-
     /**
-     * @ORM\ManyToMany (targetEntity="User", inversedBy="posts")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
      */
-    private $users;
+    private $commments;
 
     /**
      * @var int
@@ -201,5 +200,39 @@ class Post
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add commment
+     *
+     * @param \BlogBundle\Entity\Comment $commment
+     *
+     * @return Post
+     */
+    public function addCommment(\BlogBundle\Entity\Comment $commment)
+    {
+        $this->commments[] = $commment;
+
+        return $this;
+    }
+
+    /**
+     * Remove commment
+     *
+     * @param \BlogBundle\Entity\Comment $commment
+     */
+    public function removeCommment(\BlogBundle\Entity\Comment $commment)
+    {
+        $this->commments->removeElement($commment);
+    }
+
+    /**
+     * Get commments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommments()
+    {
+        return $this->commments;
     }
 }

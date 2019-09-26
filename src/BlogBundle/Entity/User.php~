@@ -12,12 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
-    
     /**
-     * @ORM\ManyToMany (targetEntity="BlogBundle\Entity\Post", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      */
-    private $posts;
-    
+    private $commments;
+
     /**
      * @var int
      *
