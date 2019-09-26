@@ -18,4 +18,11 @@ class FrontController extends Controller {
         return $this->render('front/accueil.html.twig');
     }
 
+    // /**
+    //  * @Route ("/newPost", name="newPost")
+    //  */
+    // public function newPostAction() {
+
+    // }
+
 }
