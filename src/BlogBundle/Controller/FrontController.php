@@ -15,7 +15,12 @@ class FrontController extends Controller {
      * @Route ("/", name="accueil")
      */
     public function accueilAction() {
-        return $this->render('front/accueil.html.twig');
+
+        $posts= $this->getDoctrine()->getManager()->getRepository('BlogBundle:Post')->findAll();
+        
+        return $this->render('front/accueil.html.twig', [
+            'posts' => $posts
+        ]);
     }
 
     // /**

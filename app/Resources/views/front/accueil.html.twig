@@ -1,23 +1,34 @@
 {% extends "/layout.html.twig" %}
+
+
 {% block content %}
-<h1>BLOG</h1>
+    {# C'est provisoire :) #}
+    <style>
+    th, td {
+        border: 1px solid black;
+    }
+    </style>
+    <h1>BLOG</h1>
 
-<a href="">nouveau sujet</a><br><br><br>
-<table>
-    <thead>
-        <tr>
-            <th colspan="2">Les sujets</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Titre</td>
-            <td>Date</td>
-        </tr>
-    </tbody>
+    <a href="">nouveau sujet</a><br><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Les sujets</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td>Author</td>
+            </tr>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.author }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
 
-</table>
-
-
-
+    </table>
 {% endblock %}
