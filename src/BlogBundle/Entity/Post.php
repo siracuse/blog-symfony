@@ -165,6 +165,7 @@ class Post
      */
     public function __construct()
     {
+        $this->date = new \Datetime();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 

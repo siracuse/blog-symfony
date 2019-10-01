@@ -7,15 +7,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use BlogBundle\Entity\Post;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use BlogBundle\Form\PostType;
 
 class FrontController extends Controller {
 
-    
-    
+
     /**
      * @Route ("/", name="accueil")
      */
@@ -33,22 +29,12 @@ class FrontController extends Controller {
      */
     public function newPostAction(Request $request) {
         $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
 
-        $form = $this->get('form.factory')->createBuilder(FormType::class, $post)
-            ->add('title', TextType::class)
-            ->add('date', DateType::class)
-            ->add('author', TextType::class)
-            ->add('content', TextType::class)
-            ->add('save', SubmitType::class)
-            ->getForm()
-        ;
-        if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($post);
-                $em->flush();
-            }
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
