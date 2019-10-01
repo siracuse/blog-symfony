@@ -51,4 +51,18 @@ class FrontController extends Controller {
 
     }
 
+    /**
+     * @Route ("/deletePost/{id}", name="deletePost")
+     */
+    public function deletePostAction($id)
+    {
+        $post = $this->getDoctrine()->getManager()->getRepository('BlogBundle:Post')->find($id);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($post);
+        $em->flush();
+
+        return $this->redirectToRoute('accueil');
+    }
+
 }

@@ -14,18 +14,20 @@
     <table>
         <thead>
             <tr>
-                <th colspan="2">Les sujets</th>
+                <th colspan="3">Les sujets</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Title</td>
                 <td>Author</td>
+                <td>Action</td>
             </tr>
             {% for post in posts %}
                 <tr>
                     <td>{{ post.title }}</td>
                     <td>{{ post.author }}</td>
+                    <td><a href="deletePost/{{ post.id }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
         </tbody>
